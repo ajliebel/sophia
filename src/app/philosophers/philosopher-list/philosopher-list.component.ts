@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Philosopher } from '../philosopher.model';
 
 @Component({
   selector: 'app-philosopher-list',
@@ -6,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./philosopher-list.component.css']
 })
 export class PhilosopherListComponent implements OnInit {
+
+  philosophers: Philosopher[] = [
+    new Philosopher('Thales', '649 BC', 'Miletus Ionia', '599 BC', 'Miletus Ionia')
+  ];
 
   constructor() { }
 
