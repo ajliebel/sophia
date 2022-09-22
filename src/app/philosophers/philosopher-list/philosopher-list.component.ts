@@ -9,7 +9,8 @@ import { Philosopher } from '../philosopher.model';
 export class PhilosopherListComponent implements OnInit {
 
   philosophers: Philosopher[] = [
-    new Philosopher('Thales', '649 BC', 'Miletus Ionia', '599 BC', 'Miletus Ionia')
+    new Philosopher('Thales', '649 BC', 'Miletus Ionia', '599 BC', 'Miletus Ionia'),
+    new Philosopher('Anaxamander', '630 BC', 'Miletus Ionia', '593 BC', 'Miletus Ionia'),
   ];
 
   constructor() { }
