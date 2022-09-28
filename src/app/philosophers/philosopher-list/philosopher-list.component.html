@@ -6,21 +6,11 @@
 <hr>
 <div class="row">
     <div class="col-xs-12">
-        <a href="#" class="list-group-item clearfix" *ngFor="let philo of philosophers">
-            <div class="pull-left">
-                <h4 class="list-group-item-heading">{{ philo.name }}</h4>
-                <p class="list-group-item-text">{{ philo.born }}</p>
-                <p class="list-group-item-text">{{ philo.birthPlace }}</p>
-            </div>
-            <span class="pull-right">
-                <img 
-                    [src]="philo.imageUrl" 
-                    alt="{{ philo.name }}"
-                    class="img-responsive"
-                    style="max-height: 50px;">
-            </span>
-        </a>
-        <app-philosopher-item></app-philosopher-item>
+        
+        <app-philosopher-item
+        *ngFor="let philoEl of philosophers"
+        [philo]="philoEl"
+        (philosopherSelected)="onPhilosopherSelected(philoEl)"></app-philosopher-item>
     </div>
 </div>
 

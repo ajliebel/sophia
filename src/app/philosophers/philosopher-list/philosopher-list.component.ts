@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Philosopher } from '../philosopher.model';
 
 @Component({
@@ -7,6 +7,7 @@ import { Philosopher } from '../philosopher.model';
   styleUrls: ['./philosopher-list.component.css']
 })
 export class PhilosopherListComponent implements OnInit {
+   @Output() philoWasSelected = new EventEmitter<Philosopher>();
 
   philosophers: Philosopher[] = [
     new Philosopher('Thales', '649 BC', 'Miletus Ionia', '599 BC', 'Miletus Ionia','https://upload.wikimedia.org/wikipedia/commons/c/c6/Illustrerad_Verldshistoria_band_I_Ill_107.jpg'),
@@ -17,6 +18,11 @@ export class PhilosopherListComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onPhilosopherSelected(philo: Philosopher) {
+     this.philoWasSelected.emit(philo);
+
   }
 
 }

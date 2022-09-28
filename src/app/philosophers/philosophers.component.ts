@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Philosopher } from './philosopher.model';
 
 @Component({
   selector: 'app-philosophers',
@@ -6,10 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./philosophers.component.css']
 })
 export class PhilosophersComponent implements OnInit {
-
+  selectedPhilo: Philosopher
   constructor() { }
 
   ngOnInit(): void {
   }
+
+
 
 }
