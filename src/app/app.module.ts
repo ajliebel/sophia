@@ -16,6 +16,7 @@ import { ReferencesComponent } from './references/references.component';
 import { ReferenceListComponent } from './references/reference-list/reference-list.component';
 import { ReferenceDetailComponent } from './references/reference-detail/reference-detail.component';
 import { ReferenceItemComponent } from './references/reference-list/reference-item/reference-item.component';
+import { DropdownDirective } from './shared/dropdown.directive';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ReferenceItemComponent } from './references/reference-list/reference-it
     ReferencesComponent,
     ReferenceListComponent,
     ReferenceDetailComponent,
-    ReferenceItemComponent
+    ReferenceItemComponent,
+    DropdownDirective
   ],
   imports: [
     BrowserModule,
