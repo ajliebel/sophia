@@ -1,14 +1,8 @@
 <div class="row">
    <div class="col-md-5">
-       <app-philosopher-list
-      (philoWasSelected)="selectedPhilo = $event"></app-philosopher-list>
+       <app-philosopher-list></app-philosopher-list>
    </div>
    <div class="col-md-7">
-       <app-philosopher-detail
-         *ngIf="selectedPhilo else infoText"
-         [philo]="selectedPhilo"></app-philosopher-detail>
-       <ng-template #infoText>
-           <p>Please select a Philosopher!</p>
-       </ng-template>
+      <router-outlet></router-outlet>
    </div>
 </div>

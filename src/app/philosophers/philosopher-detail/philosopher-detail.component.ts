@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Philosopher } from '../philosopher.model';
+import { PhilosopherService } from '../philosopher.service';
 
 @Component({
   selector: 'app-philosopher-detail',
@@ -8,9 +9,9 @@ import { Philosopher } from '../philosopher.model';
 })
 export class PhilosopherDetailComponent implements OnInit {
 
-  @Input() philo: Philosopher;
+  philo: Philosopher;
 
-  constructor() { }
+  constructor(private philosopherService: PhilosopherService) { }
 
   ngOnInit(): void {
   }

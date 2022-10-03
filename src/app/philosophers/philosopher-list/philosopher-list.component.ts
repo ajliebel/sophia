@@ -1,5 +1,6 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Philosopher } from '../philosopher.model';
+import { PhilosopherService } from '../philosopher.service';
 
 @Component({
   selector: 'app-philosopher-list',
@@ -7,22 +8,12 @@ import { Philosopher } from '../philosopher.model';
   styleUrls: ['./philosopher-list.component.css']
 })
 export class PhilosopherListComponent implements OnInit {
-   @Output() philoWasSelected = new EventEmitter<Philosopher>();
+   
+   philosophers: Philosopher[];
 
-  philosophers: Philosopher[] = [
-    new Philosopher('Thales', '649 BC', 'Miletus Ionia', '599 BC', 'Miletus Ionia','https://upload.wikimedia.org/wikipedia/commons/c/c6/Illustrerad_Verldshistoria_band_I_Ill_107.jpg'),
-    new Philosopher('Anaxamander', '630 BC', 'Miletus Ionia', '593 BC', 'Miletus Ionia',
-    'https://upload.wikimedia.org/wikipedia/commons/4/44/Anaximander_Mosaic_%28cropped%2C_with_sundial%29.jpg'),
-  ];
-
-  constructor() { }
+  constructor(private philosopherService: PhilosopherService) { }
 
   ngOnInit(): void {
+    this.philosophers = this.philosopherService.getPhilosophers();
   }
-
-  onPhilosopherSelected(philo: Philosopher) {
-     this.philoWasSelected.emit(philo);
-
-  }
-
 }

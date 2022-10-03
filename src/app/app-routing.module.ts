@@ -1,7 +1,22 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { PhilosopherDetailComponent } from './philosophers/philosopher-detail/philosopher-detail.component';
+import { PhilosopherStartComponent } from './philosophers/philosopher-start/philosopher-start.component';
+import { PhilosophersComponent } from './philosophers/philosophers.component';
+import { ReferencesComponent } from './references/references.component';
+import { SchoolsComponent } from './schools/schools.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  { path: '', redirectTo: '/philosophers', pathMatch: 'full' },
+  { path: 'philosophers', component: PhilosophersComponent, children: [
+   { path: '', component: PhilosopherStartComponent },
+   { path: ':id' , component: PhilosopherDetailComponent}
+  ]},
+  { path: 'references', component: ReferencesComponent}, 
+  { path: 'schools', component: SchoolsComponent},
+
+];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
