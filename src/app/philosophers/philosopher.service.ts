@@ -8,9 +8,12 @@ export class PhilosopherService {
         'https://upload.wikimedia.org/wikipedia/commons/4/44/Anaximander_Mosaic_%28cropped%2C_with_sundial%29.jpg'),
       ];
 
-    philosopherSelected = new EventEmitter<Philosopher>();
-    
+      
     getPhilosophers() {
         return this.philosophers.slice();
+    }
+
+    getPhilosopher(id: number) {
+        return this.philosophers[id];
     }
 }

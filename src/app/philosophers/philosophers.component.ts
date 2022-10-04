@@ -13,11 +13,7 @@ export class PhilosophersComponent implements OnInit {
   constructor(private philosopherService: PhilosopherService) { }
 
   ngOnInit(): void {
-    this.philosopherService.philosopherSelected.subscribe(
-      (philosopher: Philosopher) => {
-        this.selectedPhilo = philosopher;
-      }
-    );
+    
   }
 
 

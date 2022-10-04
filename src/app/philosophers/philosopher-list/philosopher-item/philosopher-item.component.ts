@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Philosopher } from '../../philosopher.model';
-import { PhilosopherService } from '../../philosopher.service';
 
 @Component({
   selector: 'app-philosopher-item',
@@ -10,14 +9,11 @@ import { PhilosopherService } from '../../philosopher.service';
 export class PhilosopherItemComponent implements OnInit {
 
   @Input() philo: Philosopher;
+  @Input() index: number;
 
-  constructor(private philosopherService: PhilosopherService) { }
-
-  ngOnInit(): void {
+  ngOnInit() {
   }
 
-  onSelected() {
-     this.philosopherService.philosopherSelected.emit(this.philo);
-  }
+
 
 }

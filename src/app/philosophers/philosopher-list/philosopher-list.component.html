@@ -8,9 +8,9 @@
     <div class="col-xs-12">
         
         <app-philosopher-item
-        *ngFor="let philoEl of philosophers"
+        *ngFor="let philoEl of philosophers; let i = index"
         [philo]="philoEl"
-        (philosopherSelected)="onPhilosopherSelected(philoEl)"></app-philosopher-item>
+        [index]="i"></app-philosopher-item>
     </div>
 </div>
 
