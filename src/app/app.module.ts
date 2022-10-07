@@ -19,6 +19,7 @@ import { ReferenceItemComponent } from './references/reference-list/reference-it
 import { DropdownDirective } from './shared/dropdown.directive';
 import { PhilosopherStartComponent } from './philosophers/philosopher-start/philosopher-start.component';
 import { PhilosopherEditComponent } from './philosophers/philosopher-edit/philosopher-edit.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,8 @@ import { PhilosopherEditComponent } from './philosophers/philosopher-edit/philos
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule
   ],
   providers: [],
