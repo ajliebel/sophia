@@ -20,6 +20,8 @@ import { DropdownDirective } from './shared/dropdown.directive';
 import { PhilosopherStartComponent } from './philosophers/philosopher-start/philosopher-start.component';
 import { PhilosopherEditComponent } from './philosophers/philosopher-edit/philosopher-edit.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { PhilosopherService } from './philosophers/philosopher.service';
 
 @NgModule({
   declarations: [
@@ -45,9 +47,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [PhilosopherService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
