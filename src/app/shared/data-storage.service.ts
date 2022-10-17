@@ -18,6 +18,7 @@ export class DataStorageService {
     fetchPhilosophers() {
         this.http.get<Philosopher[]>('https://sophia-kg-default-rtdb.firebaseio.com/philosophers.json')
           .subscribe(philosophers => { 
+               console.log(philosophers);
                this.philosopherService.setPhilosophers(philosophers);
             });
     }

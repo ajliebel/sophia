@@ -6,11 +6,13 @@ import { Philosopher } from "./philosopher.model";
 export class PhilosopherService {
 
     philosophersChanged = new Subject<Philosopher[]>();
-    private philosophers: Philosopher[] = [
-        new Philosopher('Thales', '649 BC', 'Miletus Ionia', '599 BC', 'Miletus Ionia','https://upload.wikimedia.org/wikipedia/commons/c/c6/Illustrerad_Verldshistoria_band_I_Ill_107.jpg'),
-        new Philosopher('Anaxamander', '630 BC', 'Miletus Ionia', '593 BC', 'Miletus Ionia',
-        'https://upload.wikimedia.org/wikipedia/commons/4/44/Anaximander_Mosaic_%28cropped%2C_with_sundial%29.jpg'),
-      ];
+    //private philosophers: Philosopher[] = [
+    //    new Philosopher('Thales', '649 BC', 'Miletus Ionia', '599 BC', 'Miletus Ionia','https://upload.wikimedia.org/wikipedia/commons/c/c6/Illustrerad_Verldshistoria_band_I_Ill_107.jpg'),
+    //    new Philosopher('Anaxamander', '630 BC', 'Miletus Ionia', '593 BC', 'Miletus Ionia',
+    //    'https://upload.wikimedia.org/wikipedia/commons/4/44/Anaximander_Mosaic_%28cropped%2C_with_sundial%29.jpg'),
+    //  ];
+
+    private philosophers: Philosopher[] = [];
 
       
     getPhilosophers() {
@@ -24,6 +26,7 @@ export class PhilosopherService {
 
     setPhilosophers(philosophers: Philosopher[]) {
         this.philosophers = philosophers;
+        this.philosophersChanged.next(this.philosophers.slice());
     }
 
     deletePhilosopher(index: number) {
