@@ -10,4 +10,8 @@ export class HeaderComponent {
    onSaveData() {
       this.dataStorageService.storePhilosophers();
    }
+
+   onFetchData() {
+      this.dataStorageService.fetchPhilosophers();
+   }
 }

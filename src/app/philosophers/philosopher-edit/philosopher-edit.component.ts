@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { PhilosopherService } from '../philosopher.service';
 
 @Component({
@@ -14,7 +14,8 @@ export class PhilosopherEditComponent implements OnInit {
   philoForm: FormGroup;
   
   constructor(private route: ActivatedRoute, 
-    private philoService: PhilosopherService) { }
+    private philoService: PhilosopherService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(
@@ -29,6 +30,7 @@ export class PhilosopherEditComponent implements OnInit {
 
   onSubmit() {
     console.log(this.philoForm);
+    this.onCancel();
   }
 
   private initForm() {
@@ -50,6 +52,10 @@ export class PhilosopherEditComponent implements OnInit {
       'born' : new FormControl(born),
       'died' : new FormControl(died)
     });
+  }
+
+  onCancel() {
+    this.router.navigate(['../'], {relativeTo: this.route});
   }
 
 }

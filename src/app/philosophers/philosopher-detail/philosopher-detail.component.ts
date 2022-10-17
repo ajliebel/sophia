@@ -31,4 +31,9 @@ export class PhilosopherDetailComponent implements OnInit {
     this.router.navigate(['../', this.id, 'edit'], {relativeTo: this.route});
   }
 
+  onDeletePhilosopher() {
+    this.philosopherService.deletePhilosopher(this.id);
+    this.router.navigate(['/philosophers']);
+  }
+
 }
