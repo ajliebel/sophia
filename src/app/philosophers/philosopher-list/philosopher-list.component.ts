@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy} from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Philosopher } from '../philosopher.model';
@@ -9,7 +9,7 @@ import { PhilosopherService } from '../philosopher.service';
   templateUrl: './philosopher-list.component.html',
   styleUrls: ['./philosopher-list.component.css']
 })
-export class PhilosopherListComponent implements OnInit {
+export class PhilosopherListComponent implements OnInit, OnDestroy {
    
    philosophers: Philosopher[];
    subscription: Subscription;
@@ -18,10 +18,13 @@ export class PhilosopherListComponent implements OnInit {
     private  router: Router,
     private route: ActivatedRoute) { }
 
-  ngOnInit(): void {
-    this.subscription = this.philosopherService.philosophersChanged.subscribe(
+  ngOnInit() {
+    console.log('philosopher-list.component ngOnInit')
+    this.subscription = this.philosopherService.philosophersChanged
+    .subscribe(
       (philosophers: Philosopher[]) => {
         this.philosophers = philosophers;
+        console.log('philosopher-list.component subscription fires');
         console.log(this.philosophers);
       }
     )

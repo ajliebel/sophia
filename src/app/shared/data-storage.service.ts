@@ -9,15 +9,19 @@ export class DataStorageService {
 
     storePhilosophers() {
         const philosophers = this.philosopherService.getPhilosophers();
-        this.http.put('https://sophia-kg-default-rtdb.firebaseio.com/philosophers.json',
-         philosophers).subscribe(response => {
+        this.http.put(
+            'https://sophia-kg-default-rtdb.firebaseio.com/philosophers.json',
+             philosophers
+             )
+             .subscribe(response => {
              console.log(response);
          });
     }
 
     fetchPhilosophers() {
-        this.http.get<Philosopher[]>('https://sophia-kg-default-rtdb.firebaseio.com/philosophers.json')
+        return this.http.get<Philosopher[]>('https://sophia-kg-default-rtdb.firebaseio.com/philosophers.json')
           .subscribe(philosophers => { 
+            console.log('data-storage subscribe fetch');
                console.log(philosophers);
                this.philosopherService.setPhilosophers(philosophers);
             });

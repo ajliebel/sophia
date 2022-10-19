@@ -29,6 +29,13 @@ export class PhilosopherEditComponent implements OnInit {
   }
 
   onSubmit() {
+
+    if (this.editMode) {
+      console.log('EditMode');
+    } else {
+      this.philoService.addPhilosopher(this.philoForm.value);
+    }
+
     console.log(this.philoForm);
     this.onCancel();
   }
@@ -36,19 +43,19 @@ export class PhilosopherEditComponent implements OnInit {
   private initForm() {
    
     let name = '';
-    let imagePath = '';
+    let imageUrl = '';
     let born = '';
     let died = '';
     if (this.editMode) {
       const philo = this.philoService.getPhilosopher(this.id);
       name = philo.name;
-      imagePath = philo.imageUrl;
+      imageUrl = philo.imageUrl;
       born = philo.born;
       died = philo.died;
     }
     this.philoForm = new FormGroup({
       'name' : new FormControl(name),
-      'imagePath' : new FormControl(imagePath),
+      'imageUrl' : new FormControl(imageUrl),
       'born' : new FormControl(born),
       'died' : new FormControl(died)
     });
