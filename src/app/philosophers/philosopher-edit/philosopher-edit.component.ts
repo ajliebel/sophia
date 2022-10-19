@@ -31,7 +31,7 @@ export class PhilosopherEditComponent implements OnInit {
   onSubmit() {
 
     if (this.editMode) {
-      console.log('EditMode');
+      this.philoService.updatePhilosopher(this.id, this.philoForm.value);
     } else {
       this.philoService.addPhilosopher(this.philoForm.value);
     }

@@ -34,6 +34,11 @@ export class PhilosopherService {
         this.philosophersChanged.next(this.philosophers.slice());
     }
 
+    updatePhilosopher(index: number, newPhilosopher: Philosopher) {
+        this.philosophers[index] = newPhilosopher;
+        this.philosophersChanged.next(this.philosophers.slice());
+      }
+
     deletePhilosopher(index: number) {
         this.philosophers.splice(index, 1);
         this.philosophersChanged.next(this.philosophers.slice());
