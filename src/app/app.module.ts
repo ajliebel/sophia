@@ -22,6 +22,8 @@ import { PhilosopherEditComponent } from './philosophers/philosopher-edit/philos
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { PhilosopherService } from './philosophers/philosopher.service';
+import { SchoolStartComponent } from './schools/school-start/school-start.component';
+import { SchoolService } from './schools/school.service';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,8 @@ import { PhilosopherService } from './philosophers/philosopher.service';
     ReferenceItemComponent,
     DropdownDirective,
     PhilosopherStartComponent,
-    PhilosopherEditComponent
+    PhilosopherEditComponent,
+    SchoolStartComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +53,7 @@ import { PhilosopherService } from './philosophers/philosopher.service';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [PhilosopherService],
+  providers: [PhilosopherService, SchoolService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

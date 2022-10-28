@@ -5,6 +5,8 @@ import { PhilosopherEditComponent } from './philosophers/philosopher-edit/philos
 import { PhilosopherStartComponent } from './philosophers/philosopher-start/philosopher-start.component';
 import { PhilosophersComponent } from './philosophers/philosophers.component';
 import { ReferencesComponent } from './references/references.component';
+import { SchoolDetailComponent } from './schools/school-detail/school-detail.component';
+import { SchoolStartComponent } from './schools/school-start/school-start.component';
 import { SchoolsComponent } from './schools/schools.component';
 
 const routes: Routes = [
@@ -16,7 +18,10 @@ const routes: Routes = [
    { path: ':id/edit', component: PhilosopherEditComponent}
   ]},
   { path: 'references', component: ReferencesComponent}, 
-  { path: 'schools', component: SchoolsComponent},
+  { path: 'schools', component: SchoolsComponent, children: [
+    {path: '', component: SchoolStartComponent},
+    {path: ':id', component: SchoolDetailComponent }
+  ]},
 ];
 
 

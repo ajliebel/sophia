@@ -1,1 +1,16 @@
-<app-school-item></app-school-item>
+<div class="row">
+    <div class="col-xs-12">
+        <button class="btn btn-success"(click)="onNewSchool()">New Philosopher</button>
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="col-xs-12">
+        
+        <app-school-item
+        *ngFor="let schoolEl of schools; let i = index"
+        [school]="schoolEl"
+        [index]="i"></app-school-item>
+    </div>
+</div>
+
