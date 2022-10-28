@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { School } from '../school.model';
+import { SchoolService } from '../school.service';
 @Component({
   selector: 'app-school-detail',
   templateUrl: './school-detail.component.html',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SchoolDetailComponent implements OnInit {
 
-  constructor() { }
+  school: School;
+  id: number;
+
+  constructor(private schoolService: SchoolService,
+    private route: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit(): void {
+    this.route.params.subscribe(
+      (params: Params) => {
+        this.id = +params['id'];
+        this.school= this.schoolService.getSchool(this.id);
+      }
+    );
   }
 
 }

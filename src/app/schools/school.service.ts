@@ -12,4 +12,8 @@ export class SchoolService {
     getSchools() {
         return this.schools.slice();
     }
+
+    getSchool(id: number) {
+        return this.schools[id];
+    }
 }
