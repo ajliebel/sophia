@@ -24,6 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { PhilosopherService } from './philosophers/philosopher.service';
 import { SchoolStartComponent } from './schools/school-start/school-start.component';
 import { SchoolService } from './schools/school.service';
+import { SchoolEditComponent } from './schools/school-edit/school-edit.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { SchoolService } from './schools/school.service';
     DropdownDirective,
     PhilosopherStartComponent,
     PhilosopherEditComponent,
-    SchoolStartComponent
+    SchoolStartComponent,
+    SchoolEditComponent
   ],
   imports: [
     BrowserModule,

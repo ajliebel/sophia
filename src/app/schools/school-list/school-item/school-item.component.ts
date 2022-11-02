@@ -14,4 +14,8 @@ export class SchoolItemComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onSelected() {
+    
+  }
+
 }

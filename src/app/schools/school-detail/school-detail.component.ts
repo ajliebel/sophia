@@ -25,4 +25,8 @@ export class SchoolDetailComponent implements OnInit {
     );
   }
 
+  onEditSchool() {
+    this.router.navigate(['../', this.id, 'edit'], {relativeTo: this.route });
+  }
+
 }

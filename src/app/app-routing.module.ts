@@ -6,6 +6,7 @@ import { PhilosopherStartComponent } from './philosophers/philosopher-start/phil
 import { PhilosophersComponent } from './philosophers/philosophers.component';
 import { ReferencesComponent } from './references/references.component';
 import { SchoolDetailComponent } from './schools/school-detail/school-detail.component';
+import { SchoolEditComponent } from './schools/school-edit/school-edit.component';
 import { SchoolStartComponent } from './schools/school-start/school-start.component';
 import { SchoolsComponent } from './schools/schools.component';
 
@@ -20,7 +21,8 @@ const routes: Routes = [
   { path: 'references', component: ReferencesComponent}, 
   { path: 'schools', component: SchoolsComponent, children: [
     {path: '', component: SchoolStartComponent},
-    {path: ':id', component: SchoolDetailComponent }
+    {path: ':id', component: SchoolDetailComponent },
+    { path: ':id/edit', component: SchoolEditComponent}
   ]},
 ];
 
