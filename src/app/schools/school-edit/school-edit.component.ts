@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { School } from '../school.model';
 import { SchoolService } from '../school.service';
 
 @Component({
@@ -28,7 +29,16 @@ export class SchoolEditComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.schoolForm);
+        const newSchool = new School(
+        this.schoolForm.value['name'],
+        this.schoolForm.value['period'],
+        this.schoolForm.value['imageUrl']
+      );
+      if (this.editMode) {
+       this.schoolService.updateSchool(this.id, newSchool);
+      } else {
+        this.schoolService.addSchool(newSchool);
+      }
   }
 
   private initForm() {
