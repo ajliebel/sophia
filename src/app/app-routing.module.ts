@@ -21,6 +21,7 @@ const routes: Routes = [
   { path: 'references', component: ReferencesComponent}, 
   { path: 'schools', component: SchoolsComponent, children: [
     {path: '', component: SchoolStartComponent},
+    {path: 'new', component: SchoolEditComponent},
     {path: ':id', component: SchoolDetailComponent },
     { path: ':id/edit', component: SchoolEditComponent}
   ]},

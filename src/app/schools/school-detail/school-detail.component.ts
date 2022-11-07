@@ -29,4 +29,9 @@ export class SchoolDetailComponent implements OnInit {
     this.router.navigate(['../', this.id, 'edit'], {relativeTo: this.route });
   }
 
+  onDeleteSchool() {
+    this.schoolService.deleteSchool(this.id);
+     this.router.navigate(['/schools']);
+  }
+
 }
