@@ -13,8 +13,8 @@ export class DataStorageService {
     storePhilosophers() {
         const philosophers = this.philosopherService.getPhilosophers();
         if (philosophers.length > 0) {
-            this.http.put(
-                'https://sophia-kg-default-rtdb.firebaseio.com/philosophers.json',
+            this.http.post(
+                'https://dev1.ajliebel.net/domain/philosophers',
                 philosophers
             )
                 .subscribe(response => {
@@ -23,8 +23,15 @@ export class DataStorageService {
         }
     }
 
+    deletePhilosopher(name: string) {
+          this.http.delete('https://dev1.ajliebel.net/domain/philosopher/' + name)
+              .subscribe(response => {
+                console.log(response)
+              });
+    }
+
     fetchPhilosophers() {
-        return this.http.get<Philosopher[]>('https://sophia-kg-default-rtdb.firebaseio.com/philosophers.json')
+        return this.http.get<Philosopher[]>('https://dev1.ajliebel.net/domain/philosophers')
             .subscribe(philosophers => {
                 console.log('data-storage subscribe fetch');
                 console.log(philosophers);

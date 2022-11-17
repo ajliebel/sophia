@@ -12,7 +12,7 @@ import { PhilosopherService } from '../philosopher.service';
 export class PhilosopherListComponent implements OnInit, OnDestroy {
    
    philosophers: Philosopher[];
-   subscription: Subscription;
+   private subscription: Subscription;
 
   constructor(private philosopherService: PhilosopherService,
     private  router: Router,
@@ -20,6 +20,7 @@ export class PhilosopherListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     console.log('philosopher-list.component ngOnInit')
+    this.philosophers = this.philosopherService.getPhilosophers();
     this.subscription = this.philosopherService.philosophersChanged
     .subscribe(
       (philosophers: Philosopher[]) => {
