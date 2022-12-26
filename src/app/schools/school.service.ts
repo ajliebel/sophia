@@ -1,9 +1,11 @@
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { School } from './school.model';
 
 @Injectable()
 export class SchoolService {
+    constructor(private http: HttpClient) {}
     schoolsChanged = new Subject<School[]>();
 
     // private schools: School[] = [
@@ -31,16 +33,35 @@ export class SchoolService {
     }
 
     addSchool(school: School) {
+        this.http.post(
+            'https://rl8-dt.ajliebel.net/domain/school',
+            school
+        )
+            .subscribe(response => {
+                console.log(response);
+            });
         this.schools.push(school);
         this.schoolsChanged.next(this.schools.slice());
     }
 
     updateSchool(index: number, newSchool: School) {
+        this.http.post(
+            'https://rl8-dt.ajliebel.net/domain/school',
+            newSchool
+        )
+            .subscribe(response => {
+                console.log(response);
+            });
         this.schools[index] = newSchool;
         this.schoolsChanged.next(this.schools.slice());
-      }
+    }
 
     deleteSchool(index: number) {
+        let toDelete:School = this.schools[index];
+        this.http.delete('https://rl8-dt.ajliebel.net/domain/school/' + toDelete.name)
+            .subscribe(response => {
+              console.log(response)
+            });
         this.schools.splice(index, 1);
         this.schoolsChanged.next(this.schools.slice());
     }

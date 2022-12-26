@@ -34,7 +34,7 @@ export class PhilosopherService {
 
     addPhilosopher(philosopher: Philosopher) {
         this.http.post(
-            'https://dev1.ajliebel.net/domain/philosopher',
+            'https://rl8-dt.ajliebel.net/domain/philosopher',
             philosopher
         )
             .subscribe(response => {
@@ -46,8 +46,15 @@ export class PhilosopherService {
 
     updatePhilosopher(index: number, newPhilosopher: Philosopher) {
         this.philosophers[index] = newPhilosopher;
+        this.http.post(
+            'https://rl8-dt.ajliebel.net/domain/philosopher',
+            newPhilosopher
+        )
+            .subscribe(response => {
+                console.log(response);
+            });
         this.philosophersChanged.next(this.philosophers.slice());
-      }
+    }
 
     deletePhilosopher(index: number) {
         let toDelete:Philosopher = this.philosophers[index];
@@ -56,8 +63,9 @@ export class PhilosopherService {
         this.philosophersChanged.next(this.philosophers.slice());
     }
 
+
     removePhilosopher(name: string) {
-        this.http.delete('https://dev1.ajliebel.net/domain/philosopher/' + name)
+        this.http.delete('https://rl8-dt.ajliebel.net/domain/philosopher/' + name)
             .subscribe(response => {
               console.log(response)
             });

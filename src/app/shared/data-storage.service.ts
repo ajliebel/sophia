@@ -14,7 +14,7 @@ export class DataStorageService {
         const philosophers = this.philosopherService.getPhilosophers();
         if (philosophers.length > 0) {
             this.http.post(
-                'https://dev1.ajliebel.net/domain/philosophers',
+                'https://rl8-dt.ajliebel.net/domain/philosophers',
                 philosophers
             )
                 .subscribe(response => {
@@ -23,15 +23,16 @@ export class DataStorageService {
         }
     }
 
+
     deletePhilosopher(name: string) {
-          this.http.delete('https://dev1.ajliebel.net/domain/philosopher/' + name)
+          this.http.delete('https://rl8-dt.ajliebel.net/domain/philosopher/' + name)
               .subscribe(response => {
                 console.log(response)
               });
     }
 
     fetchPhilosophers() {
-        return this.http.get<Philosopher[]>('https://dev1.ajliebel.net/domain/philosophers')
+        return this.http.get<Philosopher[]>('https://rl8-dt.ajliebel.net/domain/philosophers')
             .subscribe(philosophers => {
                 console.log('data-storage subscribe fetch');
                 console.log(philosophers);
@@ -39,12 +40,11 @@ export class DataStorageService {
             });
     }
 
-
     storeSchools() {
         const schools = this.schoolService.getSchools();
         if (schools.length > 0) {
             this.http.put(
-                'https://sophia-kg-default-rtdb.firebaseio.com/schools.json',
+                'https://rl8-dt.ajliebel.net/domain/schools.json',
                 schools
             )
                 .subscribe(response => {
@@ -54,7 +54,7 @@ export class DataStorageService {
     }
 
     fetchSchools() {
-        return this.http.get<School[]>('https://sophia-kg-default-rtdb.firebaseio.com/schools.json')
+        return this.http.get<School[]>('https://rl8-dt.ajliebel.net/domain/schools')
             .subscribe(schools => {
                 console.log('data-storage subscribe fetch');
                 console.log(schools);
