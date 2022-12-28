@@ -25,6 +25,9 @@ import { PhilosopherService } from './philosophers/philosopher.service';
 import { SchoolStartComponent } from './schools/school-start/school-start.component';
 import { SchoolService } from './schools/school.service';
 import { SchoolEditComponent } from './schools/school-edit/school-edit.component';
+import { ReferenceService } from './references/reference.service';
+import { ReferencesStartComponent } from './references/references-start/references-start.component';
+import { ReferenceEditComponent } from './references/reference-edit/reference-edit.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +49,9 @@ import { SchoolEditComponent } from './schools/school-edit/school-edit.component
     PhilosopherStartComponent,
     PhilosopherEditComponent,
     SchoolStartComponent,
-    SchoolEditComponent
+    SchoolEditComponent,
+    ReferencesStartComponent,
+    ReferenceEditComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +60,7 @@ import { SchoolEditComponent } from './schools/school-edit/school-edit.component
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [PhilosopherService, SchoolService],
+  providers: [PhilosopherService, SchoolService, ReferenceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

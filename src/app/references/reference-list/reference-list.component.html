@@ -1,1 +1,14 @@
-<app-reference-item></app-reference-item>
+<div class="row">
+    <div class="col-xs-12">
+        <button class="btn btn-success"(click)="onNewReference()">New Refernence</button>
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="col-xs-12">  
+        <app-reference-item
+        *ngFor="let referenceEl of references; let i = index"
+        [reference]="referenceEl"
+        [index]="i"></app-reference-item>
+    </div>
+</div>

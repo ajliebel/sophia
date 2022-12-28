@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Reference } from '../../reference.model';
 
 @Component({
   selector: 'app-reference-item',
@@ -7,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReferenceItemComponent implements OnInit {
 
-  constructor() { }
+  @Input() reference: Reference;
+  @Input() index: number;
 
   ngOnInit(): void {
   }

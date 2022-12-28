@@ -4,11 +4,14 @@ import { PhilosopherService } from "../philosophers/philosopher.service";
 import { Philosopher } from "../philosophers/philosopher.model";
 import { SchoolService } from "../schools/school.service";
 import { School } from "../schools/school.model";
+import { ReferenceService } from "../references/reference.service";
+import { Reference } from "../references/reference.model";
 
 @Injectable({ providedIn: 'root' })
 export class DataStorageService {
     constructor(private http: HttpClient, private philosopherService: PhilosopherService,
-        private schoolService: SchoolService) { }
+        private schoolService: SchoolService,
+        private referenceService: ReferenceService) { }
 
     storePhilosophers() {
         const philosophers = this.philosopherService.getPhilosophers();
@@ -38,6 +41,15 @@ export class DataStorageService {
                 console.log(philosophers);
                 this.philosopherService.setPhilosophers(philosophers);
             });
+    }
+
+    fetchReferences() {
+        return this.http.get<Reference[]>(
+            'https://rl8-dt.ajliebel.net/domain/references'
+        ).subscribe(response => {
+            console.log(response);
+            this.referenceService.setReferences(response);
+        }); 
     }
 
     storeSchools() {
