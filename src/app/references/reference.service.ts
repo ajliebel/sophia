@@ -35,6 +35,18 @@ export class ReferenceService {
     this.refsChanged.next(this.references.slice());
    }
 
+   updateReference(index: number, newReference: Reference) {
+      this.http.post(
+        'https://rl8-dt.ajliebel.net/domain/reference',
+        newReference
+      ).subscribe(response => {
+        console.log(response);
+      });
+      this.references[index] = newReference;
+      this.refsChanged.next(this.references.slice());
+
+   }
+
   deleteReference(index: number) {
     let toDelete:Reference = this.references[index];
     this.http.delete('https://rl8-dt.ajliebel.net/domain/reference/' + toDelete.title)
