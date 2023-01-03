@@ -41,6 +41,8 @@ export class SchoolEditComponent implements OnInit {
       }
   }
 
+  
+
   private initForm() {
   
     let name = '';

@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Subject } from "rxjs";
+import { environment } from "src/environments/environment";
 import { Reference } from "./reference.model";
 
 @Injectable()
@@ -26,7 +27,7 @@ export class ReferenceService {
 
    addReference(reference: Reference) {
     this.http.post(
-        'https://rl8-dt.ajliebel.net/domain/reference',
+      environment.restURI + '/domain/reference',
            reference
     ).subscribe(response => {
         console.log(response);
@@ -37,7 +38,7 @@ export class ReferenceService {
 
    updateReference(index: number, newReference: Reference) {
       this.http.post(
-        'https://rl8-dt.ajliebel.net/domain/reference',
+        environment.restURI + '/domain/reference',
         newReference
       ).subscribe(response => {
         console.log(response);
@@ -49,7 +50,7 @@ export class ReferenceService {
 
   deleteReference(index: number) {
     let toDelete:Reference = this.references[index];
-    this.http.delete('https://rl8-dt.ajliebel.net/domain/reference/' + toDelete.title)
+    this.http.delete(environment.restURI + '/domain/reference/' + toDelete.title)
             .subscribe(response => {
               console.log(response)
             });

@@ -6,6 +6,7 @@ import { SchoolService } from "../schools/school.service";
 import { School } from "../schools/school.model";
 import { ReferenceService } from "../references/reference.service";
 import { Reference } from "../references/reference.model";
+import { environment } from "src/environments/environment";
 
 @Injectable({ providedIn: 'root' })
 export class DataStorageService {
@@ -17,7 +18,7 @@ export class DataStorageService {
         const philosophers = this.philosopherService.getPhilosophers();
         if (philosophers.length > 0) {
             this.http.post(
-                'https://rl8-dt.ajliebel.net/domain/philosophers',
+                environment.restURI + '/domain/philosophers',
                 philosophers
             )
                 .subscribe(response => {
@@ -28,14 +29,14 @@ export class DataStorageService {
 
 
     deletePhilosopher(name: string) {
-          this.http.delete('https://rl8-dt.ajliebel.net/domain/philosopher/' + name)
+          this.http.delete(environment.restURI + '/domain/philosopher/' + name)
               .subscribe(response => {
                 console.log(response)
               });
     }
 
     fetchPhilosophers() {
-        return this.http.get<Philosopher[]>('https://rl8-dt.ajliebel.net/domain/philosophers')
+        return this.http.get<Philosopher[]>(environment.restURI + '/domain/philosophers')
             .subscribe(philosophers => {
                 console.log('data-storage subscribe fetch');
                 console.log(philosophers);
@@ -45,7 +46,7 @@ export class DataStorageService {
 
     fetchReferences() {
         return this.http.get<Reference[]>(
-            'https://rl8-dt.ajliebel.net/domain/references'
+            environment.restURI + '/domain/references'
         ).subscribe(response => {
             console.log(response);
             this.referenceService.setReferences(response);
@@ -56,7 +57,7 @@ export class DataStorageService {
         const schools = this.schoolService.getSchools();
         if (schools.length > 0) {
             this.http.put(
-                'https://rl8-dt.ajliebel.net/domain/schools.json',
+                environment.restURI + '/domain/schools.json',
                 schools
             )
                 .subscribe(response => {
@@ -66,7 +67,7 @@ export class DataStorageService {
     }
 
     fetchSchools() {
-        return this.http.get<School[]>('https://rl8-dt.ajliebel.net/domain/schools')
+        return this.http.get<School[]>(environment.restURI + '/domain/schools')
             .subscribe(schools => {
                 console.log('data-storage subscribe fetch');
                 console.log(schools);

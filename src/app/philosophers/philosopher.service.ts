@@ -2,16 +2,13 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Subject } from "rxjs";
 import { Philosopher } from "./philosopher.model";
+import { environment } from "src/environments/environment";
 
 @Injectable()
 export class PhilosopherService {
     constructor(private http: HttpClient) {}
     philosophersChanged = new Subject<Philosopher[]>();
-    // private philosophers: Philosopher[] = [
-    //    new Philosopher('Thales', '649 BC', 'Miletus Ionia', '599 BC', 'Miletus Ionia','https://upload.wikimedia.org/wikipedia/commons/c/c6/Illustrerad_Verldshistoria_band_I_Ill_107.jpg'),
-    //    new Philosopher('Anaxamander', '630 BC', 'Miletus Ionia', '593 BC', 'Miletus Ionia',
-    //    'https://upload.wikimedia.org/wikipedia/commons/4/44/Anaximander_Mosaic_%28cropped%2C_with_sundial%29.jpg'),
-    //  ];
+
 
     private philosophers: Philosopher[] = [];
 
@@ -34,7 +31,7 @@ export class PhilosopherService {
 
     addPhilosopher(philosopher: Philosopher) {
         this.http.post(
-            'https://rl8-dt.ajliebel.net/domain/philosopher',
+            environment.restURI + '/domain/philosopher',
             philosopher
         )
             .subscribe(response => {
@@ -47,7 +44,7 @@ export class PhilosopherService {
     updatePhilosopher(index: number, newPhilosopher: Philosopher) {
         this.philosophers[index] = newPhilosopher;
         this.http.post(
-            'https://rl8-dt.ajliebel.net/domain/philosopher',
+            environment.restURI + '/domain/philosopher',
             newPhilosopher
         )
             .subscribe(response => {
@@ -65,7 +62,7 @@ export class PhilosopherService {
 
 
     removePhilosopher(name: string) {
-        this.http.delete('https://rl8-dt.ajliebel.net/domain/philosopher/' + name)
+        this.http.delete(environment.restURI + '/domain/philosopher/' + name)
             .subscribe(response => {
               console.log(response)
             });

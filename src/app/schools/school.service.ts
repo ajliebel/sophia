@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { environment } from "src/environments/environment";
 import { School } from './school.model';
 
 @Injectable()
@@ -25,7 +26,7 @@ export class SchoolService {
 
     addSchool(school: School) {
         this.http.post(
-            'https://rl8-dt.ajliebel.net/domain/school',
+            environment.restURI + '/domain/school',
             school
         )
             .subscribe(response => {
@@ -37,7 +38,7 @@ export class SchoolService {
 
     updateSchool(index: number, newSchool: School) {
         this.http.post(
-            'https://rl8-dt.ajliebel.net/domain/school',
+            environment.restURI + '/domain/school',
             newSchool
         )
             .subscribe(response => {
@@ -49,7 +50,7 @@ export class SchoolService {
 
     deleteSchool(index: number) {
         let toDelete:School = this.schools[index];
-        this.http.delete('https://rl8-dt.ajliebel.net/domain/school/' + toDelete.name)
+        this.http.delete(environment.restURI + '/domain/school/' + toDelete.name)
             .subscribe(response => {
               console.log(response)
             });
