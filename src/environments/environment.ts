@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  restURI: 'https://rl8-dt.ajliebel.net'
+  restURI: 'https://dokr4.ajliebel.net:8443'
 };
 
 /*
