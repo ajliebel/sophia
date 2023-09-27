@@ -13,6 +13,8 @@ export class PhilosopherListComponent implements OnInit, OnDestroy {
    
    philosophers: Philosopher[];
    private subscription: Subscription;
+   itemsPerPage: number = 10;
+   currentPage: number;
 
   constructor(private philosopherService: PhilosopherService,
     private  router: Router,
@@ -20,6 +22,7 @@ export class PhilosopherListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     console.log('philosopher-list.component ngOnInit')
+    this.currentPage = 1;
     this.philosophers = this.philosopherService.getPhilosophers();
     this.subscription = this.philosopherService.philosophersChanged
     .subscribe(
@@ -33,6 +36,11 @@ export class PhilosopherListComponent implements OnInit, OnDestroy {
 
   onNewPhilosopher() {
       this.router.navigate(['new'], {relativeTo: this.route});
+  }
+
+  setPage(pageNumber: number): void {
+    console.log("pageNumber: " +  pageNumber);
+    this.currentPage = pageNumber;
   }
 
   ngOnDestroy() {
