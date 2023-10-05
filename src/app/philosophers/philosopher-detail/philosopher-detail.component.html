@@ -33,5 +33,17 @@
     <div class="col-xs-12">
         SYNOPSIS
     </div>
-</div>    
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <ul>
+            <li *ngFor="let link of philo.referenceLinks">
+                <a [href]="link.uri" target="_blank">{{ link.title }}</a>
+            </li>
+            <!--li><a href="https://www.w3schools.com">Visit W3Schools.com!</a></li>
+            <li>Link2</li>
+            <li>Link3</li -->
+        </ul>
+    </div>
+</div>     
 
