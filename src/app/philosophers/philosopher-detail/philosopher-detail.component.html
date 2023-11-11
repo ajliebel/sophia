@@ -15,7 +15,7 @@
         appDropdown>
             <button type="button" class="btn btn-primary dropdown-toggle">Manage <span class="caret"></span></button>
             <ul class="dropdown-menu">
-                <li><a style="cursor: pointer;">Associate</a></li>
+                <li><a style="cursor: pointer;" (click)="onAssociatePhilosopher()">Associate</a></li>
                 <li><a style="cursor: pointer;" (click)="onEditPhilosopher()">Edit</a></li>
                 <li><a style="cursor: pointer;" (click)="onDeletePhilosopher()">Delete</a></li>
             </ul>
@@ -40,9 +40,6 @@
             <li *ngFor="let link of philo.referenceLinks">
                 <a [href]="link.uri" target="_blank">{{ link.title }}</a>
             </li>
-            <!--li><a href="https://www.w3schools.com">Visit W3Schools.com!</a></li>
-            <li>Link2</li>
-            <li>Link3</li -->
         </ul>
     </div>
 </div>     

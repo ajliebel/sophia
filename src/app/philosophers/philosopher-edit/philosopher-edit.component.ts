@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit} from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { PhilosopherService } from '../philosopher.service';
+import { ReferencesDialogComponent } from '../../references/references-dialog/references-dialog.component';
 
 @Component({
   selector: 'app-philosopher-edit',
@@ -12,6 +13,7 @@ export class PhilosopherEditComponent implements OnInit {
   id: number;
   editMode = false;
   philoForm: FormGroup;
+  selectedCountry: string = 'default';
   
   constructor(private route: ActivatedRoute, 
     private philoService: PhilosopherService,
@@ -59,10 +61,13 @@ export class PhilosopherEditComponent implements OnInit {
       'born' : new FormControl(born),
       'died' : new FormControl(died)
     });
+
   }
 
   onCancel() {
     this.router.navigate(['../'], {relativeTo: this.route});
   }
+
+
 
 }

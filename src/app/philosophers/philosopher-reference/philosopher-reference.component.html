@@ -1,0 +1,19 @@
+
+<div class="container">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Reference Name</th>
+        <th>URI</th>
+      </tr>
+    </thead>
+        <tbody>
+        <tr *ngFor="let item of philo.referenceLinks">
+            <td>{{ item.id }}</td>
+            <td>{{ item.title }}</td>
+            <td>{{ item.uri }}</td>
+        </tr>
+        </tbody>
+ </table>
+</div>
