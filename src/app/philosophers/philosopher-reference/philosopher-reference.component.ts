@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { PhilosopherService } from '../philosopher.service';
 import { Philosopher } from '../philosopher.model';
+import { ReferenceService } from 'src/app/references/reference.service';
 
 @Component({
   selector: 'app-philosopher-reference',
@@ -12,7 +13,7 @@ import { Philosopher } from '../philosopher.model';
 export class PhilosopherReferenceComponent implements OnInit {
   philo: Philosopher;
   id:number;
-  refForm: FormGroup; 
+  referenceForm: FormGroup; 
 
   constructor(private route: ActivatedRoute,
     private philosopherService: PhilosopherService,
@@ -25,6 +26,21 @@ export class PhilosopherReferenceComponent implements OnInit {
         this.philo = this.philosopherService.getPhilosopher(this.id);
       }
     )
+    this.initForm();
+  }
+
+  private initForm() {
+    let title = '';
+    let uri = '';
+
+    this.referenceForm = new FormGroup( {
+      'title' : new FormControl(title),
+      'uri' : new FormControl(uri)
+    });
+  }
+
+  onSubmit(): void {
+
   }
 
 }

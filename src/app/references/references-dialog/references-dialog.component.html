@@ -1,0 +1,18 @@
+<div class="modal" #dialog tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          Your country:
+          <select [(ngModel)]="selectedReference" class="form-control">
+            <option value="default">Choose…</option>
+            <option>United States</option>
+            <option>France</option>
+            <option>Australia</option>
+          </select>
+        </div>
+        <div class="modal-footer">
+          <button (click)="closeDialogWithSelection()" class="btn btn-primary">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>

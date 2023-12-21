@@ -1,6 +1,42 @@
-
 <div class="container">
-  <table class="table table-striped">
+<div class="row">
+    <div class="col-xs-12">
+        <form [formGroup]="referenceForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-xs-12">
+                    <button type="submit" class="btn btn-success">Save</button>
+                    <button type="button" class="btn btn-danger">Cancel</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                   <div class="form-group">
+                       <label for="title">Title</label>
+                       <input 
+                        type="text"
+                        id="title"
+                        formControlName="title"
+                        class="form-control">
+                   </div> 
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                   <div class="form-group">
+                       <label for="uri">URL</label>
+                       <input 
+                        type="text"
+                        id="uri"
+                        formControlName="uri"
+                        class="form-control">
+                   </div> 
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<table class="table table-striped">
     <thead>
       <tr>
         <th>Id</th>
@@ -16,4 +52,5 @@
         </tr>
         </tbody>
  </table>
+
 </div>

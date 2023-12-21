@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PhilosopherDetailComponent } from './philosophers/philosopher-detail/philosopher-detail.component';
 import { PhilosopherEditComponent } from './philosophers/philosopher-edit/philosopher-edit.component';
+import { PhilosopherReferenceComponent } from './philosophers/philosopher-reference/philosopher-reference.component';
 import { PhilosopherStartComponent } from './philosophers/philosopher-start/philosopher-start.component';
 import { PhilosophersComponent } from './philosophers/philosophers.component';
 import { ReferenceDetailComponent } from './references/reference-detail/reference-detail.component';
@@ -19,7 +20,8 @@ const routes: Routes = [
    { path: '', component: PhilosopherStartComponent },
    { path: 'new', component: PhilosopherEditComponent},
    { path: ':id' , component: PhilosopherDetailComponent},
-   { path: ':id/edit', component: PhilosopherEditComponent}
+   { path: ':id/edit', component: PhilosopherEditComponent},
+   { path: ':id/associate', component: PhilosopherReferenceComponent}
   ]},
   { path: 'references', component: ReferencesComponent, children: [ 
   {path: '', component: ReferencesStartComponent},

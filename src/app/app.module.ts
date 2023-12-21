@@ -28,6 +28,8 @@ import { SchoolEditComponent } from './schools/school-edit/school-edit.component
 import { ReferenceService } from './references/reference.service';
 import { ReferencesStartComponent } from './references/references-start/references-start.component';
 import { ReferenceEditComponent } from './references/reference-edit/reference-edit.component';
+import { ReferencesDialogComponent } from './references/references-dialog/references-dialog.component';
+import { PhilosopherReferenceComponent } from './philosophers/philosopher-reference/philosopher-reference.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +53,9 @@ import { ReferenceEditComponent } from './references/reference-edit/reference-ed
     SchoolStartComponent,
     SchoolEditComponent,
     ReferencesStartComponent,
-    ReferenceEditComponent
+    ReferenceEditComponent,
+    ReferencesDialogComponent,
+    PhilosopherReferenceComponent,
   ],
   imports: [
     BrowserModule,
