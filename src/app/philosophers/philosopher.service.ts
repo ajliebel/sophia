@@ -6,11 +6,20 @@ import { environment } from "src/environments/environment";
 
 @Injectable()
 export class PhilosopherService {
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient) { }
     philosophersChanged = new Subject<Philosopher[]>();
 
 
     private philosophers: Philosopher[] = [];
+
+    fetchPhilosophers() {
+        return this.http.get<Philosopher[]>(environment.restURI + '/domain/philosophers')
+            .subscribe(philosophers => {
+                console.log('data-storage subscribe fetch');
+                console.log(philosophers);
+                this.setPhilosophers(philosophers);
+            });
+    }
 
     setPhilosophers(philosophers: Philosopher[]) {
         console.log("philosopherService.setPhilosophers()");
@@ -18,7 +27,7 @@ export class PhilosopherService {
         this.philosophers = philosophers;
         this.philosophersChanged.next(this.philosophers.slice());
     }
-     
+
     getPhilosophers() {
         return this.philosophers.slice();
         this.philosophersChanged.next(this.philosophers.slice());
@@ -43,7 +52,7 @@ export class PhilosopherService {
 
     updatePhilosopher(index: number, newPhilosopher: Philosopher) {
         this.philosophers[index] = newPhilosopher;
-        this.http.post(
+        this.http.put(
             environment.restURI + '/domain/philosopher',
             newPhilosopher
         )
@@ -54,7 +63,7 @@ export class PhilosopherService {
     }
 
     deletePhilosopher(index: number) {
-        let toDelete:Philosopher = this.philosophers[index];
+        let toDelete: Philosopher = this.philosophers[index];
         this.removePhilosopher(toDelete.name);
         this.philosophers.splice(index, 1);
         this.philosophersChanged.next(this.philosophers.slice());
@@ -64,7 +73,11 @@ export class PhilosopherService {
     removePhilosopher(name: string) {
         this.http.delete(environment.restURI + '/domain/philosopher/' + name)
             .subscribe(response => {
-              console.log(response)
+                console.log(response)
             });
-  }
+    }
+
+    getReferences() {
+
+    };
 }

@@ -23,6 +23,7 @@ export class PhilosopherListComponent implements OnInit, OnDestroy {
   ngOnInit() {
     console.log('philosopher-list.component ngOnInit')
     this.currentPage = 1;
+    this.philosopherService.fetchPhilosophers();
     this.philosophers = this.philosopherService.getPhilosophers();
     this.subscription = this.philosopherService.philosophersChanged
     .subscribe(

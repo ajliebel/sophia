@@ -13,7 +13,7 @@ export class HeaderComponent {
    }
 
    onFetchData() {
-      this.dataStorageService.fetchPhilosophers();
+      //this.dataStorageService.fetchPhilosophers();
       this.dataStorageService.fetchSchools();
       this.dataStorageService.fetchReferences();
    }

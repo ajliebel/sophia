@@ -35,14 +35,14 @@ export class DataStorageService {
               });
     }
 
-    fetchPhilosophers() {
-        return this.http.get<Philosopher[]>(environment.restURI + '/domain/philosophers')
-            .subscribe(philosophers => {
-                console.log('data-storage subscribe fetch');
-                console.log(philosophers);
-                this.philosopherService.setPhilosophers(philosophers);
-            });
-    }
+    // fetchPhilosophers() {
+    //     return this.http.get<Philosopher[]>(environment.restURI + '/domain/philosophers')
+    //         .subscribe(philosophers => {
+    //             console.log('data-storage subscribe fetch');
+    //             console.log(philosophers);
+    //             this.philosopherService.setPhilosophers(philosophers);
+    //         });
+    // }
 
     fetchReferences() {
         return this.http.get<Reference[]>(
