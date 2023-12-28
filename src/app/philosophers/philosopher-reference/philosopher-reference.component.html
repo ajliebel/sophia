@@ -1,56 +1,72 @@
 <div class="container">
-<div class="row">
-    <div class="col-xs-12">
-        <form [formGroup]="referenceForm" (ngSubmit)="onSubmit()">
-            <div class="row">
-                <div class="col-xs-12">
-                    <button type="submit" class="btn btn-success">Save</button>
-                    <button type="button" class="btn btn-danger">Cancel</button>
+    <div class="row">
+        <div class="col-xs-12">
+            <form [formGroup]="referenceForm" (ngSubmit)="onSubmit()">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <button type="submit" class="btn btn-success">Save</button>
+                        <button type="button" class="btn btn-danger">Cancel</button>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12">
-                   <div class="form-group">
-                       <label for="title">Title</label>
-                       <input 
-                        type="text"
-                        id="title"
-                        formControlName="title"
-                        class="form-control">
-                   </div> 
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <label for="title">Title</label>
+                            <input type="text" id="title" formControlName="title" class="form-control">
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12">
-                   <div class="form-group">
-                       <label for="uri">URL</label>
-                       <input 
-                        type="text"
-                        id="uri"
-                        formControlName="uri"
-                        class="form-control">
-                   </div> 
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <label for="uri">URL</label>
+                            <input type="text" id="uri" formControlName="uri" class="form-control">
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
-</div>
+    <div class="row">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Action</th>
+                    <th>Reference Name</th>
+                    <th>URI</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let link of philo.referenceLinks; let i = index">
+                    <td style="width: 150px;">
+                        <button class="btn btn-danger" (click)="removeReference(i)">Remove</button>
+                    </td>
+                    <td>{{ link.title }}</td>
+                    <td><a [href]="link.uri">{{ link.uri }}</a></td>
 
-<table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Id</th>
-        <th>Reference Name</th>
-        <th>URI</th>
-      </tr>
-    </thead>
-        <tbody>
-        <tr *ngFor="let item of philo.referenceLinks">
-            <td>{{ item.id }}</td>
-            <td>{{ item.title }}</td>
-            <td>{{ item.uri }}</td>
-        </tr>
-        </tbody>
- </table>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Action</th>
+                    <th>Reference Name</th>
+                    <th>URI</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let link of allReferenceLinks; let i = index">
+                    <td style="width: 150px;">
+                        <button class="btn btn-success" (click)="addReference(philo.entityId, link.entityId)">Add</button>
+                    </td>
+                    <td>{{ link.title }}</td>
+                    <td><a [href]="link.uri">{{ link.uri }}</a></td>
 
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

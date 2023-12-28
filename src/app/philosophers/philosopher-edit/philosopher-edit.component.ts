@@ -47,19 +47,26 @@ export class PhilosopherEditComponent implements OnInit {
     let name = '';
     let imageUrl = '';
     let born = '';
+    let birthPlace = '';
     let died = '';
+    let deathPlace = '';
     if (this.editMode) {
       const philo = this.philoService.getPhilosopher(this.id);
       name = philo.name;
       imageUrl = philo.imageUrl;
       born = philo.born;
+      birthPlace  = philo.birthPlace;
       died = philo.died;
+      deathPlace = philo.deathPlace;
+
     }
     this.philoForm = new FormGroup({
       'name' : new FormControl(name),
       'imageUrl' : new FormControl(imageUrl),
       'born' : new FormControl(born),
-      'died' : new FormControl(died)
+      'birthPlace' : new FormControl(birthPlace),
+      'died' : new FormControl(died),
+      'deathPlace' : new FormControl(deathPlace)
     });
 
   }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Philosopher } from '../philosopher.model';
 import { PhilosopherService } from '../philosopher.service';
+import { Reference } from 'src/app/references/reference.model';
 
 @Component({
   selector: 'app-philosopher-detail',
@@ -11,6 +12,7 @@ import { PhilosopherService } from '../philosopher.service';
 export class PhilosopherDetailComponent implements OnInit {
 
   philo: Philosopher;
+  refs: Reference[];
   id: number;
 
   constructor(private philosopherService: PhilosopherService,
@@ -18,6 +20,7 @@ export class PhilosopherDetailComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
+    
     this.route.params.subscribe(
       (params: Params) => {
         this.id = +params['id'];
@@ -29,6 +32,7 @@ export class PhilosopherDetailComponent implements OnInit {
   onEditPhilosopher() {
     //this.router.navigate(['edit'], {relativeTo: this.route});
     this.router.navigate(['../', this.id, 'edit'], {relativeTo: this.route});
+
   }
 
   onAssociatePhilosopher() {

@@ -1,6 +1,7 @@
 import { Reference } from '../references/reference.model';
 
 export class Philosopher {
+    public entityId;
     public name: string;
     public born: string;
     public birthPlace: string;
@@ -9,7 +10,9 @@ export class Philosopher {
     public imageUrl: string;
     public referenceLinks: Reference[];
 
-    constructor(name: string, born: string, birthPlace: string, died: string, deathPlace: string, imageUrl: string, referenceLinks: Reference[]) {
+    constructor(entityId: string, name: string, born: string, birthPlace: string, died: string, 
+                deathPlace: string, imageUrl: string, referenceLinks: Reference[]) {
+        this.entityId = entityId;
         this.name = name;
         this.born = born;
         this.birthPlace = birthPlace;
