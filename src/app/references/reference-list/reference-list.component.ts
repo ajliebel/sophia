@@ -19,12 +19,13 @@ export class ReferenceListComponent implements OnInit {
        private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.references = this.referenceService.getReferences();
+    //this.references = this.referenceService.getReferences();
     this.referenceChangeSub = this.referenceService.refsChanged
        .subscribe((references: Reference[]) => {
         this.references = references;
        }
     );
+    this.referenceService.fetchReferences();
   }
 
   ngOnDestroy(): void {

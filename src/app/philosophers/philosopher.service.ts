@@ -3,15 +3,18 @@ import { Injectable } from "@angular/core";
 import { Subject } from "rxjs";
 import { Philosopher } from "./philosopher.model";
 import { environment } from "src/environments/environment";
+import { Reference } from "../references/reference.model";
 
 @Injectable()
 export class PhilosopherService {
     constructor(private http: HttpClient) { }
     philosophersChanged = new Subject<Philosopher[]>();
     philosopherChanged = new Subject<Philosopher>();
+    exclusionRefsChanged = new Subject<Reference[]>(); 
 
 
     private philosophers: Philosopher[] = [];
+    private references: Reference[];
 
     fetchPhilosophers() {
         return this.http.get<Philosopher[]>(environment.restURI + '/domain/philosophers')
@@ -31,13 +34,6 @@ export class PhilosopherService {
                 this.philosopherChanged.next(philosopher);
             })
     }
-
-    // setPhilosophers(philosophers: Philosopher[]) {
-    //     console.log("philosopherService.setPhilosophers()");
-    //     console.log(philosophers);
-    //     this.philosophers = philosophers;
-    //     this.philosophersChanged.next(this.philosophers.slice());
-    //}
 
     getPhilosophers() {
         return this.philosophers.slice();
@@ -91,13 +87,38 @@ export class PhilosopherService {
             });
     }
 
-    getReferences(linkIds: string[]) {
-        return this.http.get(environment.restURI +
-             "domain/reference/" + linkIds)
-             .subscribe( response => {
-                console.log(response)
-             });
+    // getReferences(linkIds: string[]) {
+    //     return this.http.get(environment.restURI +
+    //          "domain/reference/" + linkIds)
+    //          .subscribe( response => {
+    //             console.log(response)
+    //          });
 
-    };
+    // };
+
+    fetchReferencesExcluding(entityId: string) {
+        return this.http.get<Reference[]>(environment.restURI + '/domain/references-excluding/' + entityId)
+        .subscribe(references => {
+          this.references = references;
+          this.exclusionRefsChanged.next(references);
+        });
+       }
+    
+
+    addPhilosopherReference(pEid: string, rEid: string) {
+        this.http.put<Philosopher>(environment.restURI + '/domain/philosopher/' + pEid + '/referenceLink/' + rEid, {})
+              .subscribe(philosopher => {
+                console.log(philosopher)
+                this.philosopherChanged.next(philosopher);
+              });     
+      }
+
+      removePhilosopherReference(pEid: string, rEid: string) {
+        this.http.delete<Philosopher>(environment.restURI + '/domain/philosopher/' + pEid + '/referenceLink/' + rEid, {})
+              .subscribe(philosopher => {
+                console.log(philosopher)
+                this.philosopherChanged.next(philosopher);
+              });     
+      }
 
 }

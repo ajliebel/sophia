@@ -3,6 +3,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Philosopher } from '../philosopher.model';
 import { PhilosopherService } from '../philosopher.service';
 import { Reference } from 'src/app/references/reference.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-philosopher-detail',
@@ -18,6 +19,7 @@ export class PhilosopherDetailComponent implements OnInit {
   constructor(private philosopherService: PhilosopherService,
     private route: ActivatedRoute,
     private router: Router) { }
+    private philosopherSubscription: Subscription;
 
   ngOnInit(): void {
     
@@ -25,8 +27,16 @@ export class PhilosopherDetailComponent implements OnInit {
       (params: Params) => {
         this.id = +params['id'];
         this.philo = this.philosopherService.getPhilosopher(this.id);
+        this.philosopherService.fetchPhilosopher(this.philo.entityId);
       }
     );
+
+    this.philosopherSubscription = this.philosopherService.philosopherChanged
+    .subscribe((philosopher: Philosopher) => {
+       this.philo = philosopher;
+    })
+
+
   }
 
   onEditPhilosopher() {

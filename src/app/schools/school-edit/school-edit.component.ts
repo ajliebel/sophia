@@ -29,15 +29,11 @@ export class SchoolEditComponent implements OnInit {
   }
 
   onSubmit() {
-        const newSchool = new School(
-        this.schoolForm.value['name'],
-        this.schoolForm.value['period'],
-        this.schoolForm.value['imageUrl']
-      );
+
       if (this.editMode) {
-       this.schoolService.updateSchool(this.id, newSchool);
+       this.schoolService.updateSchool(this.id, this.schoolForm.value);
       } else {
-        this.schoolService.addSchool(newSchool);
+        this.schoolService.addSchool(this.schoolForm.value);
       }
   }
 

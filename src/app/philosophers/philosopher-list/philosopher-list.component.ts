@@ -12,7 +12,7 @@ import { PhilosopherService } from '../philosopher.service';
 export class PhilosopherListComponent implements OnInit, OnDestroy {
    
    philosophers: Philosopher[];
-   private subscription: Subscription;
+   private philosophersSubscription: Subscription;
    itemsPerPage: number = 10;
    currentPage: number;
 
@@ -23,9 +23,9 @@ export class PhilosopherListComponent implements OnInit, OnDestroy {
   ngOnInit() {
     console.log('philosopher-list.component ngOnInit')
     this.currentPage = 1;
-    this.philosopherService.fetchPhilosophers();
-    this.philosophers = this.philosopherService.getPhilosophers();
-    this.subscription = this.philosopherService.philosophersChanged
+    //this.philosopherService.fetchPhilosophers();
+    //this.philosophers = this.philosopherService.getPhilosophers();
+    this.philosophersSubscription = this.philosopherService.philosophersChanged
     .subscribe(
       (philosophers: Philosopher[]) => {
         this.philosophers = philosophers;
@@ -33,6 +33,7 @@ export class PhilosopherListComponent implements OnInit, OnDestroy {
         console.log(this.philosophers);
       }
     )
+    this.philosopherService.fetchPhilosophers();
   }
 
   onNewPhilosopher() {
@@ -45,6 +46,6 @@ export class PhilosopherListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this.philosophersSubscription.unsubscribe();
   }
 }

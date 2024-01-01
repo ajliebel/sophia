@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="row">
+    <!--div class="row">
         <div class="col-xs-12">
             <form [formGroup]="referenceForm" (ngSubmit)="onSubmit()">
                 <div class="row">
@@ -26,7 +26,7 @@
                 </div>
             </form>
         </div>
-    </div>
+    </div -->
     <div class="row">
         <table class="table table-striped">
             <thead>
@@ -39,7 +39,7 @@
             <tbody>
                 <tr *ngFor="let link of philo.referenceLinks; let i = index">
                     <td style="width: 150px;">
-                        <button class="btn btn-danger" (click)="removeReference(i)">Remove</button>
+                        <button class="btn btn-danger" (click)="removeReference(philo.entityId, link.entityId)">Remove</button>
                     </td>
                     <td>{{ link.title }}</td>
                     <td><a [href]="link.uri">{{ link.uri }}</a></td>
