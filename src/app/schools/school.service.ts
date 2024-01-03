@@ -11,6 +11,14 @@ export class SchoolService {
 
     private schools: School[];
 
+    fetchSchools() {
+        return this.http.get<School[]>(environment.restURI + "/domain/schools")
+            .subscribe(schools => {
+                this.schools = schools;
+                this.schoolsChanged.next(this.schools.slice());
+            });
+    }
+
     setSchools(schools: School[]) {
         this.schools = schools;
         this.schoolsChanged.next(this.schools.slice());

@@ -8,8 +8,8 @@
   <div class="row">
     <div class="col-xs-12">
       <app-philosopher-item
-        *ngFor="let philoEl of philosophers.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage); let i = index"
-        [philo]="philoEl" [index]="(currentPage-1) * itemsPerPage + i"></app-philosopher-item>
+        *ngFor="let philoEl of philosophers; let i = index"
+        [philo]="philoEl" [index]="i"></app-philosopher-item>
     </div>
   </div>
   <div class="row">

@@ -18,12 +18,12 @@ export class SchoolListComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.schools = this.schoolService.getSchools();
     this.schoolChangeSub = this.schoolService.schoolsChanged
       .subscribe((schools: School[]) => {
         this.schools = schools;
         }
       );
+      this.schoolService.fetchSchools();
   }
 
   ngOnDestroy(): void {
