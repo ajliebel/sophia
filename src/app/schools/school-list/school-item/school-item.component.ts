@@ -15,7 +15,7 @@ export class SchoolItemComponent implements OnInit {
   }
 
   onSelected() {
-    
+    console.log("School EntityId Selected: " + this.school.entityId)
   }
 
 }

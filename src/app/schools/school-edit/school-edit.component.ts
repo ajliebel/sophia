@@ -40,22 +40,28 @@ export class SchoolEditComponent implements OnInit {
   
 
   private initForm() {
-  
+
+    let entityId = ''
     let name = '';
     let period = '';
+    let location = '';
     let imageUrl = '';
 
     if (this.editMode) {
       const school = this.schoolService.getSchool(this.id);
+      entityId = school.entityId
       name = school.name;
       period = school.period
+      location = school.location;
       imageUrl = school.imageUrl;
     }
 
     this.schoolForm = new FormGroup( {
+      'entityId': new FormControl(entityId),
       'name': new FormControl(name),
       'period': new FormControl(period),
       'imageUrl': new FormControl(imageUrl),
+      'location': new FormControl(location)
     });
   }
 

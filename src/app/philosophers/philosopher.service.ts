@@ -17,7 +17,7 @@ export class PhilosopherService {
     private references: Reference[];
 
     fetchPhilosophers() {
-        return this.http.get<Philosopher[]>(environment.restURI + '/domain/philosophers')
+        return this.http.get<Philosopher[]>(environment.restURI + '/philosophers/philosophers')
             .subscribe(philosophers => {
                 console.log('data-storage subscribe fetch');
                 console.log(philosophers);
@@ -27,7 +27,7 @@ export class PhilosopherService {
     }
 
     fetchPhilosopher(entityId: string) {
-        return this.http.get<Philosopher>(environment.restURI + '/domain/philosopher/' + entityId)
+        return this.http.get<Philosopher>(environment.restURI + '/philosophers/philosopher/' + entityId)
             .subscribe(philosopher => {
                 console.log('fetchPhilosopher:')
                 console.log(philosopher)
@@ -48,7 +48,7 @@ export class PhilosopherService {
 
     addPhilosopher(philosopher: Philosopher) {
         this.http.post(
-            environment.restURI + '/domain/philosopher',
+            environment.restURI + '/philosophers/philosopher',
             philosopher
         )
             .subscribe(response => {
@@ -61,7 +61,7 @@ export class PhilosopherService {
     updatePhilosopher(index: number, newPhilosopher: Philosopher) {
         this.philosophers[index] = newPhilosopher;
         this.http.put(
-            environment.restURI + '/domain/philosopher',
+            environment.restURI + '/philosophers/philosopher',
             newPhilosopher
         )
             .subscribe(response => {
@@ -74,27 +74,13 @@ export class PhilosopherService {
 
     deletePhilosopher(index: number) {
         let toDelete: Philosopher = this.philosophers[index];
-        this.removePhilosopher(toDelete.name);
-        this.philosophers.splice(index, 1);
-        this.philosophersChanged.next(this.philosophers.slice());
-    }
-
-
-    removePhilosopher(name: string) {
-        this.http.delete(environment.restURI + '/domain/philosopher/' + name)
+        this.http.delete(environment.restURI + '/philosophers/philosopher/' + toDelete.entityId)
             .subscribe(response => {
                 console.log(response)
             });
+        this.philosophers.splice(index, 1);
+        this.philosophersChanged.next(this.philosophers.slice());
     }
-
-    // getReferences(linkIds: string[]) {
-    //     return this.http.get(environment.restURI +
-    //          "domain/reference/" + linkIds)
-    //          .subscribe( response => {
-    //             console.log(response)
-    //          });
-
-    // };
 
     fetchReferencesExcluding(entityId: string) {
         return this.http.get<Reference[]>(environment.restURI + '/domain/references-excluding/' + entityId)
@@ -114,7 +100,7 @@ export class PhilosopherService {
       }
 
       removePhilosopherReference(pEid: string, rEid: string) {
-        this.http.delete<Philosopher>(environment.restURI + '/domain/philosopher/' + pEid + '/referenceLink/' + rEid, {})
+        this.http.delete<Philosopher>(environment.restURI + '/philosophers/philosopher/' + pEid + '/referenceLink/' + rEid, {})
               .subscribe(philosopher => {
                 console.log(philosopher)
                 this.philosopherChanged.next(philosopher);

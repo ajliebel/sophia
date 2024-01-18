@@ -19,7 +19,7 @@ export class ReferenceService {
    }
 
    fetchReferences() {
-    return this.http.get<Reference[]>(environment.restURI + '/domain/references')
+    return this.http.get<Reference[]>(environment.restURI + '/references/references')
       .subscribe(references => {
         this.setReferences(references);
         this.refsChanged.next(references);
@@ -38,7 +38,7 @@ export class ReferenceService {
 
    addReference(reference: Reference) {
     this.http.post(
-      environment.restURI + '/domain/reference',
+      environment.restURI + '/references/reference',
            reference
     ).subscribe(response => {
         console.log(response);
@@ -48,8 +48,8 @@ export class ReferenceService {
    }
 
    updateReference(index: number, newReference: Reference) {
-      this.http.post(
-        environment.restURI + '/domain/reference',
+      this.http.put(
+        environment.restURI + '/references/reference',
         newReference
       ).subscribe(response => {
         console.log(response);
@@ -61,7 +61,7 @@ export class ReferenceService {
 
   deleteReference(index: number) {
     let toDelete:Reference = this.references[index];
-    this.http.delete(environment.restURI + '/domain/reference/' + toDelete.title)
+    this.http.delete(environment.restURI + '/references/reference/' + toDelete.entityId)
             .subscribe(response => {
               console.log(response)
             });

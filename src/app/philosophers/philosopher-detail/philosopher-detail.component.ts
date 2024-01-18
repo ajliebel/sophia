@@ -19,7 +19,8 @@ export class PhilosopherDetailComponent implements OnInit {
   constructor(private philosopherService: PhilosopherService,
     private route: ActivatedRoute,
     private router: Router) { }
-    private philosopherSubscription: Subscription;
+  
+  private philosopherSubscription: Subscription;
 
   ngOnInit(): void {
     

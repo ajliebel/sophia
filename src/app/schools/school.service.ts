@@ -8,15 +8,23 @@ import { School } from './school.model';
 export class SchoolService {
     constructor(private http: HttpClient) {}
     schoolsChanged = new Subject<School[]>();
+    schoolChanged = new Subject<School>();
 
     private schools: School[];
 
     fetchSchools() {
-        return this.http.get<School[]>(environment.restURI + "/domain/schools")
+        return this.http.get<School[]>(environment.restURI + "/schools/schools")
             .subscribe(schools => {
                 this.schools = schools;
                 this.schoolsChanged.next(this.schools.slice());
             });
+    }
+
+    fetchSchool(entityId: string) {
+        return this.http.get<School>(environment.restURI + '/schools/school/' + entityId)
+            .subscribe(school => {
+                this.schoolChanged.next(school);
+            })
     }
 
     setSchools(schools: School[]) {
@@ -34,7 +42,7 @@ export class SchoolService {
 
     addSchool(school: School) {
         this.http.post(
-            environment.restURI + '/domain/school',
+            environment.restURI + '/schools/school',
             school
         )
             .subscribe(response => {
@@ -45,20 +53,22 @@ export class SchoolService {
     }
 
     updateSchool(index: number, newSchool: School) {
-        this.http.post(
-            environment.restURI + '/domain/school',
+        this.schools[index] = newSchool;
+        this.http.put(
+            environment.restURI + '/schools/school',
             newSchool
         )
             .subscribe(response => {
                 console.log(response);
+                this.schoolChanged.next(newSchool)
             });
-        this.schools[index] = newSchool;
+     
         this.schoolsChanged.next(this.schools.slice());
     }
 
     deleteSchool(index: number) {
         let toDelete:School = this.schools[index];
-        this.http.delete(environment.restURI + '/domain/school/' + toDelete.name)
+        this.http.delete(environment.restURI + '/schools/school/' + toDelete.entityId)
             .subscribe(response => {
               console.log(response)
             });

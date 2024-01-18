@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { School } from '../school.model';
 import { SchoolService } from '../school.service';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-school-detail',
   templateUrl: './school-detail.component.html',
@@ -16,13 +17,20 @@ export class SchoolDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router) { }
 
+  schoolSubscription: Subscription;
+
   ngOnInit(): void {
     this.route.params.subscribe(
       (params: Params) => {
         this.id = +params['id'];
         this.school= this.schoolService.getSchool(this.id);
+        this.schoolService.fetchSchool(this.school.entityId);
       }
     );
+    this.schoolSubscription = this.schoolService.schoolChanged
+      .subscribe((school) => {
+        this.school = school;
+      })
   }
 
   onEditSchool() {
