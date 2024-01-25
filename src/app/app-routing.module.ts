@@ -13,6 +13,7 @@ import { SchoolDetailComponent } from './schools/school-detail/school-detail.com
 import { SchoolEditComponent } from './schools/school-edit/school-edit.component';
 import { SchoolStartComponent } from './schools/school-start/school-start.component';
 import { SchoolsComponent } from './schools/schools.component';
+import { SchoolReferenceComponent } from './schools/school-reference/school-reference.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/philosophers', pathMatch: 'full' },
@@ -33,7 +34,8 @@ const routes: Routes = [
     {path: '', component: SchoolStartComponent},
     {path: 'new', component: SchoolEditComponent},
     {path: ':id', component: SchoolDetailComponent },
-    { path: ':id/edit', component: SchoolEditComponent}
+    {path: ':id/edit', component: SchoolEditComponent},
+    {path: ':id/associate', component: SchoolReferenceComponent}
   ]},
 ];
 

@@ -37,6 +37,10 @@ export class SchoolDetailComponent implements OnInit {
     this.router.navigate(['../', this.id, 'edit'], {relativeTo: this.route });
   }
 
+  onAssociateSchool() {
+    this.router.navigate(['../', this.id, 'associate'], {relativeTo: this.route});
+  }
+
   onDeleteSchool() {
     this.schoolService.deleteSchool(this.id);
      this.router.navigate(['/schools']);
