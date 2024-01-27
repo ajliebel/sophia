@@ -85,7 +85,23 @@ export class SchoolService {
           this.references = references;
           this.exclusionRefsChanged.next(references);
         });
-       }
+    }
+
+    addSchoolReference(sEid: string, rEid: string) {
+        this.http.put<School>(environment.restURI + '/schools/school/' + sEid + '/referenceLink/' + rEid, {})
+        .subscribe(school => {
+            this.schoolChanged.next(school);
+          });   
+    }
+
+    removeSchoolReference(sEid: string, rEid: string) {
+        this.http.delete<School>(environment.restURI + '/schools/school/' + sEid + '/referenceLink/' + rEid, {})
+        .subscribe(school => {
+            this.schoolChanged.next(school);
+          });   
+    }
+    
+    
     
 
 

@@ -83,7 +83,7 @@ export class PhilosopherService {
     }
 
     fetchReferencesExcluding(entityId: string) {
-        return this.http.get<Reference[]>(environment.restURI + '/domain/references-excluding/' + entityId)
+        return this.http.get<Reference[]>(environment.restURI + '/philosophers/references-excluding/' + entityId)
         .subscribe(references => {
           this.references = references;
           this.exclusionRefsChanged.next(references);
@@ -92,7 +92,7 @@ export class PhilosopherService {
     
 
     addPhilosopherReference(pEid: string, rEid: string) {
-        this.http.put<Philosopher>(environment.restURI + '/domain/philosopher/' + pEid + '/referenceLink/' + rEid, {})
+        this.http.put<Philosopher>(environment.restURI + '/philosophers/philosopher/' + pEid + '/referenceLink/' + rEid, {})
               .subscribe(philosopher => {
                 console.log(philosopher)
                 this.philosopherChanged.next(philosopher);

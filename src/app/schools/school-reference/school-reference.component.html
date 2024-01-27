@@ -1,0 +1,45 @@
+<div class="container">
+    <div class="row">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Action</th>
+                    <th>Reference Name</th>
+                    <th>URI</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let link of school.referenceLinks; let i = index">
+                    <td style="width: 150px;">
+                        <button class="btn btn-danger" (click)="removeReference(school.entityId, link.entityId)">Remove</button>
+                    </td>
+                    <td>{{ link.title }}</td>
+                    <td><a [href]="link.uri">{{ link.uri }}</a></td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Action</th>
+                    <th>Reference Name</th>
+                    <th>URI</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let link of allReferenceLinks; let i = index">
+                    <td style="width: 150px;">
+                        <button class="btn btn-success" (click)="addReference(school.entityId, link.entityId)">Add</button>
+                    </td>
+                    <td>{{ link.title }}</td>
+                    <td><a [href]="link.uri">{{ link.uri }}</a></td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
