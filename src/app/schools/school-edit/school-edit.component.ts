@@ -37,6 +37,10 @@ export class SchoolEditComponent implements OnInit {
       }
   }
 
+  onCancel() {
+    this.router.navigate(['../'], {relativeTo: this.route});
+  }
+
   
 
   private initForm() {
