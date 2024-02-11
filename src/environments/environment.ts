@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  restURI: 'https://dokr4.ajliebel.net:8443'
+  //restURI: 'https://dokr4.ajliebel.net:8443'
+  restURI: 'http://localhost:8080'
 };
 
 /*
