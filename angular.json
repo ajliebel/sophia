@@ -65,10 +65,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "sophia:build:production"
+              "buildTarget": "sophia:build:production"
             },
             "development": {
-              "browserTarget": "sophia:build:development"
+              "buildTarget": "sophia:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -76,7 +76,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "sophia:build"
+            "buildTarget": "sophia:build"
           }
         },
         "test": {
